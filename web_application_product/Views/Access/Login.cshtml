@@ -1,0 +1,98 @@
+﻿@model web_application_product.Models.VMLogin;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+            margin: 50px auto;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            border-radius: 3px;
+            border: none;
+            box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #1abc9c;
+            border: none;
+            border-radius: 3px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+            width: 100%;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #16a085;
+            }
+
+        .error-message {
+            color: #f00;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form asp-controller="Access" asp-action="Login" method="post">
+        <h1>Login</h1>
+        <label for="Email">Email</label>
+        <input type="email" id="Email" name="Email" asp-for="Email" />
+
+        <label for="Password">Password</label>
+        <input type="password" id="Password" name="Password" asp-for="PassWord" />
+
+        <label>
+            <input type="checkbox" asp-for="KeepLoggedIn" />
+            Keep me logged in.
+        </label>
+
+        <button type="submit">Login</button>
+
+        @if (ViewData["ValidateMessage"] != null)
+        {
+            <div class="error-message">@ViewData["ValidateMessage"]</div>
+        }
+    </form>
+</body>
+</html>

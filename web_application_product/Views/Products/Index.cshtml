@@ -1,0 +1,100 @@
+﻿@model IEnumerable<web_application_product.Models.Product>
+
+@{ ViewData["Title"] = "Index"; }
+
+
+
+<p>
+    <a class="btn" id="create" asp-action="Create">Create New</a>
+</p>
+<style>
+    #create {
+        position: relative;
+        right: -975px;
+        background-color: #C39BD3;
+    }
+    /* Define the styles for the table */
+    .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #85929E;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        margin-bottom: 20p50;
+    }
+
+        /* Define the hover styles for the buttons */
+        .btn:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Add spacing between the buttons */
+        .btn + .btn {
+            margin-left: 16px;
+        }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #f2f2f2;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+<!-- Render the table with the defined styles -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+            <th>@Html.DisplayNameFor(model => model.Color)</th>
+            <th>@Html.DisplayNameFor(model => model.ProductCategory)</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+
+    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+    <td>@Html.DisplayFor(modelItem => item.Color)</td>
+    <td>@Html.DisplayFor(modelItem => item.ProductCategory)</td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
+    </td>
+
+</tr>}
+
+        <a asp-action="Electronics" class="btn">Electronics</a> |
+        <a asp-action="Stationary" class="btn">Stationary</a> |
+        <a asp-action="Apparels" class="btn">Apparels</a>
+
+
+
+      
+{
+}
+    </tbody>
+
+</table>
